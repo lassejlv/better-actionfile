@@ -1,0 +1,5 @@
+[hello]
+cmd = "echo 'Hello, world!'"
+
+[build]
+cmd = "bun -v"
