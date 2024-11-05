@@ -6,16 +6,11 @@ import child_process from 'child_process';
 
 const CONFIG_FILE = 'action.toml';
 
-if (!fs.existsSync(CONFIG_FILE)) {
-  console.error(`failed to find config file: ${CONFIG_FILE}`);
-  process.exit(1);
-}
-
 const commandSchema = z.object({
   cmd: z.string().min(1),
 });
 
-const cliCommands = ['list', 'version', 'help']
+const cliCommands = ['list', 'version', 'help'];
 
 let cmd;
 
@@ -23,18 +18,12 @@ try {
   const commands = await import(`${process.cwd()}/${CONFIG_FILE}`);
   const commandToRun = process.argv[2];
 
-
   if (commandToRun && cliCommands.includes(commandToRun)) {
-
-
     switch (commandToRun) {
       case 'list':
         console.log('Available commands:');
         Object.keys(commands.default).forEach((command) => {
-          console.log(
-            `  ${command}`
-          )
-
+          console.log(`  ${command}`);
         });
         break;
       case 'version':
@@ -44,18 +33,17 @@ try {
         console.log('Usage: action <command>');
         console.log('Available commands:');
         cliCommands.forEach((command) => {
-          console.log(
-            `  ${command}`
-          )
-
-        }
-        );
+          console.log(`  ${command}`);
+        });
     }
 
     process.exit(0);
   }
 
-
+  if (!fs.existsSync(CONFIG_FILE)) {
+    console.error(`failed to find config file: ${CONFIG_FILE}`);
+    process.exit(1);
+  }
 
   if (!commandToRun) {
     // Access the first command from the default export

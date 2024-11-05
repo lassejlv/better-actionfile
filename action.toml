@@ -1,5 +1,2 @@
-[hello]
-cmd = "echo 'Hello, world!'"
-
-[build]
-cmd = "bun -v"
+[dev]
+cmd = "bunx concurrently -k -n test1,test2 -c magenta,blue \"echo 'Test 1 Works'\" \"echo 'Test 2 Works'\""
