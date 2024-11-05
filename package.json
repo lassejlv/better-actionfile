@@ -1,6 +1,6 @@
 {
   "name": "actionfile",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Fast & idiot proof task runner",
   "module": "index.ts",
   "type": "module",
